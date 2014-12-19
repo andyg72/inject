@@ -59,7 +59,7 @@ describe Array do
 
   end
 
-context 'andy_inject with an argument and a symbol' do
+  context 'andy_inject with an argument and a symbol' do
 
     it 'can add up numbers' do
       expect([1,2,3].inject(5, :+)).to eq(11)
@@ -78,16 +78,18 @@ context 'andy_inject with an argument and a symbol' do
 
   end
 
+  context 'andy_inject prioritises symbol over block if both provided' do
+
+    it 'if passed an argument, symbol and block' do
+      expect([1,2,3].andy_inject(5, :*){| memo, n | memo + n }).to eq(30)
+    end
+    
+    it 'if passed a symbol and block (btw Ruby errors on this!)' do
+      expect([1,2,3].andy_inject(:*){| memo, n | memo + n }).to eq(6)
+    end
+
+  end
+
 
 end
 
-#   with a symbol (shorthand way)
-#   with an argument and block
-#   with a symbol argument
-# only do it on arrays
-
-# self.each
-# yield memo, item
-# p item
-# Proc &block
-# self.shift (don't use)
