@@ -2,7 +2,7 @@ require 'andyarray'
 
 describe Array do 
 
-  context 'with a block' do
+  context 'andy_inject with a block' do
 
     it 'can add up numbers' do
       expect([1,2,3].inject{ | memo, n | memo + n }).to eq(6)
@@ -21,7 +21,7 @@ describe Array do
 
   end
 
-  context 'with a symbol' do
+  context 'andy_inject with a symbol' do
 
     it 'can add up numbers' do
       expect([1,2,3].inject(:+)).to eq(6)
@@ -40,7 +40,7 @@ describe Array do
 
   end
 
-  context 'with an argument and a block' do
+  context 'andy_inject with an argument and a block' do
 
     it 'can add up numbers' do
       expect([1,2,3].inject(5){ | memo, n | memo + n }).to eq(11)
@@ -49,12 +49,31 @@ describe Array do
 
     it 'can subtract numbers' do
       expect([1,2,3].inject(5){ | memo, n | memo - n }).to eq(-1)
-      # expect([1,2,3].andy_inject(5){ | memo, n | memo - n }).to eq(1)
+      expect([1,2,3].andy_inject(5){ | memo, n | memo - n }).to eq(-1)
     end
 
     it 'can multiply numbers' do
       expect([1,2,3].inject(5){ | memo, n | memo * n }).to eq(30)
-      # expect([1,2,3].andy_inject(5){ | memo, n | memo * n }).to eq(6)
+      expect([1,2,3].andy_inject(5){ | memo, n | memo * n }).to eq(30)
+    end
+
+  end
+
+context 'andy_inject with an argument and a symbol' do
+
+    it 'can add up numbers' do
+      expect([1,2,3].inject(5, :+)).to eq(11)
+      expect([1,2,3].andy_inject(5, :+)).to eq(11)
+    end
+
+    it 'can subtract numbers' do
+      expect([1,2,3].inject(5, :-)).to eq(-1)
+      expect([1,2,3].andy_inject(5, :-)).to eq(-1)
+    end
+
+    it 'can multiply numbers' do
+      expect([1,2,3].inject(5, :*)).to eq(30)
+      expect([1,2,3].andy_inject(5, :*)).to eq(30)
     end
 
   end

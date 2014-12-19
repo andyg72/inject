@@ -1,37 +1,39 @@
 class Array
 
   def andy_inject(a = nil, b = nil, &block)
-    if a.class == Symbol
+    if block != nil && a == nil
       memo = self.first
-      p memo
-      p block
-      if block != nil
-        self[1..self.length].each do | n |
-          memo = block.call(memo, n)
-          p memo
-        end
-      elsif symbol != nil
-        p 'symbol received'
-        op = symbol.slice(-1)
-        p op
-        self[1..self.length].each do | n |
-          case op
-          when '+' then memo = memo + n
-          when '-' then memo = memo - n
-          when '*' then memo = memo * n
-          else p op
-          end
-        end
-      else
-        p 'andy'
+      self[1..self.length].each do | n |
+        memo = block.call(memo, n)
       end
-      return memo
-    elsif a.class != Symbol
-      p 'a not a symbol'
+    elsif block != nil && a != nil
+      memo = a
+      self[0..self.length].each do | n |
+        memo = block.call(memo, n)
+      end
+    elsif a.class == Symbol && b == nil
+      memo = self.first
+      self[1..self.length].each do | n |
+        case a.slice(-1)
+        when '+' then memo = memo + n
+        when '-' then memo = memo - n
+        when '*' then memo = memo * n
+        else p 'unknown operator'
+        end
+      end
+    elsif b.class == Symbol && a != nil
+      memo = a
+      self[0..self.length].each do | n |
+        case b.slice(-1)
+        when '+' then memo = memo + n
+        when '-' then memo = memo - n
+        when '*' then memo = memo * n
+        else p 'unknown operator'
+        end
+      end
     else
-      p 'something else'
+      p 'incorrect syntax for andy_inject'
     end
-    
+    return memo
   end # method end
-
 end # class end
