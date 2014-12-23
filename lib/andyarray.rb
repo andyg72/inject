@@ -10,4 +10,9 @@ class Array
     end
     return memo
   end
+
+  def andy_inject_recursion(a = nil, b = nil, &block)
+    #write a method to do the same, but using a recursive method
+  end
+
 end
