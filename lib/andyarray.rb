@@ -13,6 +13,9 @@ class Array
 
   def andy_inject_recursion(a = nil, b = nil, &block)
     #write a method to do the same, but using a recursive method
+    #key to it is to figure out how to iterate through the array to find n 
+    #whilst recursively generating the value for memo
+    #e.g. memo = n + method to get memo
   end
 
 end
