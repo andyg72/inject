@@ -1,15 +1,20 @@
 class Array
-  def andy_inject(a = nil, b = nil, &block)
-    a == nil || a.class == Symbol ? memo = self.first : memo = a
-    if a.class == Symbol || b.class == Symbol
-      range_start, my_proc = a.class == Symbol ? [1, a.to_proc] : [0, b.to_proc]
-      self[range_start..self.length].each { | n | memo = my_proc.call(memo, n) }
-    else
-      a == nil ? range_start = 1 : range_start = 0
-      self[range_start..self.length].each { | n |  memo = block.call(memo, n) }
-    end
+  def andy_inject(a = nil, b = nil, &my_proc)
+    memo, array = a == nil || a.class == Symbol ? [self.first, self[1..self.length]] : [a, self]
+    a.class == Symbol ? my_proc = a.to_proc : b.class == Symbol ? my_proc = b.to_proc : my_proc  
+    array.each { | n | memo = my_proc.call(memo, n) }
     return memo
   end
+
+#  example of how recursion could work from coach Henry
+  # def henry_recur(sym, memo, sequence)
+  #   if sequence.first
+  #     new_memo = memo.send sym, memo, sequence.first
+  #     henry_recur sym, new_memo, sequence.shift
+  #   else
+  #     memo
+  #   end
+  # end
 
   def andy_inject_recursion(a = nil, b = nil, &block)
     #write a method to do the same, but using a recursive method
