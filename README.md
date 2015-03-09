@@ -1,15 +1,16 @@
-#inject
-======
+#Rewrite Ruby's Inject Method
+=============================
 
 ##Makers Academy Week Two End of Week Challenge
 
 Objective: Rewrite the Array class inject method (using either / both .each and recursion) 
 Learning Objectives :  TDD (Test Driven Development)
 
-Managed to get down to an 11 line method, using .each as the basis for the method.
-UPDATE: following code review have reduced the lines to 4, whilst improving the readability of the code making it clear what it is doing.
+On first attempt I managed to get down to an 11 line method, using .each as the basis for the method. My process for this was to folow a test driven approach, sequentially getting each test to pass, then to refactor the code to DRY it out, removing repetition.
 
-UPDATE 2: following code review also managed to write a recursive method (andy_inject_recrsion) as the changes made on andy_inject made it simpler to consider how to implement.
+Following a code review with one of the coaches I understood that there were opportunities to further refactor it, making the code clearer and reducing the method to four lines 4.
+
+Additionally following that refactoring I also managed to write a recursive method (andy_inject_recrsion) as the refactoring changes to andy_inject made it simpler to consider how to implement.
 
 to use through irb
 
@@ -37,9 +38,6 @@ Learnings:
 Observations:
   Noticed that existing inject method;
   - when passed an argument, symbol and a block, it prioritises symbol
-  - when passed just a symbol and a block, it errors - however in my method it continues to prioritise symbol and doesn't error
-
-To do
-  - write an equivalent using recursion rather than .each - DONE
+  - when passed just a symbol and a block, it errors - I improved on this in my method which continues to prioritise symbol and doesn't error
   
   
